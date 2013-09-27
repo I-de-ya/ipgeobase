@@ -1,5 +1,4 @@
 require 'happymapper'
-require 'iconv' unless String.instance_methods.include?(:encode)
 
 module Ipgeobase
   class IpMetaData
@@ -28,11 +27,7 @@ module Ipgeobase
     private
 
     def encode(api_string)
-      if api_string.respond_to?(:encode)
-        api_string.encode
-      else
-        Iconv.iconv('windows-1251', 'utf-8', api_string).first
-      end
+      api_string.encode
     end
   end
 end
